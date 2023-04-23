@@ -14,7 +14,6 @@ const App = () => {
     { name: "Mirdin", surname: "Agai", days: 20, salaryPerDay: 70 },
     { name: "Bayish", surname: "zzz", days: 16, salaryPerDay: 33 },
     { name: "Adilet", surname: "Gazybekov", days: 11, salaryPerDay: 16 },
-
     { name: "Aidana", surname: "pppp", days: 5, salaryPerDay: 28 },
     { name: "Ilim", surname: "ttt", days: 12, salaryPerDay: 72 },
   ];

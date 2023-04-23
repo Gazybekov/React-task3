@@ -1,37 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Task3.css";
 
 const Task3 = (props) => {
-  let textLi = React.createRef();
-  const showTask3 = () => {
-    textLi.current = props.employees.map((elem) => {
-      return elem.name;
-    });
-  };
+  let [dirol, setDirol] = useState(
+    props.employees.map((elem) => ({ ...elem }))
+  );
 
+  let inputValue = (elem, index) => {
+    let { name, value } = elem.target;
+    let newList = [...dirol];
+    newList[index][name] = value;
+    setDirol(newList);
+  };
   return (
     <div>
       <div className="container mtb-3">
         <table className="table">
           <thead>
-            {props.employees.map((elem) => {
-              <tbody>
-                <tr>
-                  <td>{elem.name[0]}</td>
-                  <td>{elem.surname}</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>Name</td>
-                </tr>
-              </tbody>;
-            })}
-            <th>Name</th>
-            <th>Surname</th>
-            <th>days</th>
-            <th>days</th>
-            <th>SalaryPerDay</th>
+            <tr>
+              <th>Name</th>
+              <th>Last Name</th>
+              <th>Days</th>
+              <th>Salary per day</th>
+              <th>Result</th>
+            </tr>
           </thead>
+          {props.employees.map((elem, index) => (
+            <tbody>
+              <tr key={index}>
+                <td>{elem.name}</td>
+                <td>{elem.surname}</td>
+                <td>
+                  <input
+                    name="days"
+                    value={dirol[index].days}
+                    onChange={(e) => inputValue(e, index)}
+                    type="text"
+                  />
+                </td>
+                <td>
+                  <input
+                    name="salaryPerDay"
+                    value={dirol[index].salaryPerDay}
+                    onChange={(e) => inputValue(e, index)}
+                    type="text"
+                  />
+                </td>
+                <td>{dirol[index].days * dirol[index].salaryPerDay}</td>
+              </tr>
+            </tbody>
+          ))}
         </table>
       </div>
     </div>
